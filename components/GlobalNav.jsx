@@ -39,7 +39,6 @@ const navItems = [
         links: [
             { label: "Uplink", ariaLabel: "Link in Bio", href: "/uplink" },
             { label: "Email", ariaLabel: "Email us", href: "mailto:polestudios@mail.ru" },
-            { label: "Twitter", ariaLabel: "Twitter", href: "#" },
             { label: "LinkedIn", ariaLabel: "LinkedIn", href: "https://linkedin.com/company/thepolestudios" }
         ]
     }
