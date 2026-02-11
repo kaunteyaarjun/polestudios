@@ -7,34 +7,6 @@ import emailjs from '@emailjs/browser';
 
 const links = [
     {
-        label: "Official Website",
-        sub: "The Main Frequency",
-        url: "/",
-        icon: Globe,
-        color: "text-white"
-    },
-    {
-        label: "Featured Projects",
-        sub: "Selected Works 2024",
-        url: "/featured",
-        icon: ArrowRight,
-        color: "text-tech-amber"
-    },
-    {
-        label: "Mission Log",
-        sub: "Our Philosophy",
-        url: "/mission",
-        icon: ArrowRight,
-        color: "text-tech-blue"
-    },
-    {
-        label: "The Unit",
-        sub: "Meet the Team",
-        url: "/team",
-        icon: ArrowRight,
-        color: "text-tech-green"
-    },
-    {
         label: "Instagram",
         sub: "@thepolestudios",
         url: "https://instagram.com/thepolestudios",
@@ -55,26 +27,62 @@ export default function UplinkPage() {
     const [sending, setSending] = useState(false);
     const [sent, setSent] = useState(false);
     const [error, setError] = useState(false);
+    const [rateLimited, setRateLimited] = useState(false);
     const form = useRef();
+    const submitCount = useRef(0);
+    const lastSubmitTime = useRef(0);
+
+    const MAX_SUBMISSIONS = 3; // Max submissions per session
+    const COOLDOWN_MS = 60000; // 60 second cooldown between submissions
 
     const sendEmail = (e) => {
         e.preventDefault();
+
+        // Honeypot check — bots fill hidden fields
+        const honeypot = form.current.querySelector('[name="website_url"]');
+        if (honeypot && honeypot.value) {
+            // Bot detected — silently pretend success
+            setSent(true);
+            setTimeout(() => { setShowForm(false); setSent(false); }, 3000);
+            return;
+        }
+
+        // Rate limit: max submissions per session
+        if (submitCount.current >= MAX_SUBMISSIONS) {
+            setRateLimited(true);
+            return;
+        }
+
+        // Rate limit: cooldown between submissions
+        const now = Date.now();
+        const timeSinceLastSubmit = now - lastSubmitTime.current;
+        if (lastSubmitTime.current > 0 && timeSinceLastSubmit < COOLDOWN_MS) {
+            const secondsLeft = Math.ceil((COOLDOWN_MS - timeSinceLastSubmit) / 1000);
+            setError(`COOLDOWN ACTIVE. RETRY IN ${secondsLeft}s.`);
+            return;
+        }
+
         setSending(true);
         setError(false);
 
-        // REPLACE THESE WITH YOUR ACTUAL EMAILJS KEYS
-        // Service ID, Template ID, Public Key
-        emailjs.sendForm('service_wyn3n0e', 'template_8hjak1v', form.current, '437MH8D5ELLiy12Ie')
+        emailjs.sendForm(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_wyn3n0e',
+            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_8hjak1v',
+            form.current,
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '437MH8D5ELLiy12Ie'
+        )
             .then((result) => {
+                submitCount.current += 1;
+                lastSubmitTime.current = Date.now();
                 setSent(true);
                 setSending(false);
                 setTimeout(() => {
                     setShowForm(false);
                     setSent(false);
                 }, 3000);
-            }, (error) => {
-                console.log(error.text);
-                setError(true);
+            }, (err) => {
+                console.log(err.text);
+                setError('TRANSMISSION FAILED. CHECK CONSOLE.');
                 setSending(false);
             });
     };
@@ -190,6 +198,8 @@ export default function UplinkPage() {
 
                             {!sent ? (
                                 <form ref={form} onSubmit={sendEmail} className="space-y-4">
+                                    {/* Honeypot — hidden from humans, bots fill it */}
+                                    <input type="text" name="website_url" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }} tabIndex={-1} autoComplete="off" />
                                     <div>
                                         <label className="text-[10px] font-mono text-neutral-500 uppercase block mb-1">Identity</label>
                                         <input
@@ -223,7 +233,13 @@ export default function UplinkPage() {
 
                                     {error && (
                                         <div className="text-red-500 text-xs font-mono">
-                                            TRANSMISSION FAILED. CHECK CONSOLE.
+                                            {typeof error === 'string' ? error : 'TRANSMISSION FAILED. CHECK CONSOLE.'}
+                                        </div>
+                                    )}
+
+                                    {rateLimited && (
+                                        <div className="text-yellow-500 text-xs font-mono">
+                                            MAX TRANSMISSIONS REACHED. SESSION LOCKED.
                                         </div>
                                     )}
 

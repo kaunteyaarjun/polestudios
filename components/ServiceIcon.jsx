@@ -131,6 +131,76 @@ export default function ServiceIcon({ type }) {
                         <rect x="80" y="75" width="2" height="12" fill="currentColor" />
                     </svg>
                 );
+            case "saas-automation":
+                return (
+                    // AI / Chip / Network
+                    <svg viewBox="0 0 100 100" className="w-full h-full p-4">
+                        <motion.path
+                            d="M50,15 L85,35 L85,75 L50,95 L15,75 L15,35 Z"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            variants={iconVariants}
+                            initial="hidden"
+                            animate="visible"
+                        />
+                        <motion.rect
+                            x="40" y="45" width="20" height="20"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            animate={{ rotate: 90 }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                        />
+                        <motion.circle
+                            cx="50" cy="55" r="2"
+                            fill="currentColor"
+                            animate={{ opacity: [0, 1, 0] }}
+                            transition={{ duration: 1, repeat: Infinity }}
+                        />
+                        <motion.path
+                            d="M15,35 L40,45 M85,35 L60,45"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            opacity="0.5"
+                        />
+                    </svg>
+                );
+            case "seo-growth":
+                return (
+                    // Search + Graph
+                    <svg viewBox="0 0 100 100" className="w-full h-full p-4">
+                        <motion.circle
+                            cx="40" cy="45" r="20"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            variants={iconVariants}
+                            initial="hidden"
+                            animate="visible"
+                        />
+                        <motion.path
+                            d="M26,59 L15,70"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 0.5, delay: 0.5 }}
+                        />
+                        <motion.path
+                            d="M60,60 L70,50 L80,65 L90,25"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 1, delay: 1 }}
+                        />
+                        <circle cx="90" cy="25" r="3" fill="currentColor" />
+                    </svg>
+                );
             default:
                 return null;
         }

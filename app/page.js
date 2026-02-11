@@ -16,57 +16,14 @@ import ParallaxText from "../components/ParallaxText";
 import { ArrowRight } from 'lucide-react';
 
 // New Components
-import CardNav from "../components/CardNav";
 import Terminal from "../components/Terminal";
 
 export default function Home() {
-
-    const navItems = [
-        {
-            label: "About",
-            bgColor: "#0D0716",
-            textColor: "#fff",
-            links: [
-                { label: "Mission", ariaLabel: "Our Mission", href: "/mission" },
-                { label: "Team", ariaLabel: "Our Team", href: "/team" }
-            ]
-        },
-        {
-            label: "Projects",
-            bgColor: "#170D27",
-            textColor: "#fff",
-            links: [
-                { label: "Featured", ariaLabel: "Featured Projects", href: "/featured" },
-                { label: "Case Studies", ariaLabel: "Project Case Studies", href: "/case-studies" }
-            ]
-        },
-        {
-            label: "Contact",
-            bgColor: "#271E37",
-            textColor: "#fff",
-            links: [
-                { label: "Uplink", ariaLabel: "Link in Bio", href: "/uplink" },
-                { label: "Email", ariaLabel: "Email us", href: "mailto:polestudios@mail.ru" },
-                { label: "Twitter", ariaLabel: "Twitter", href: "#" },
-                { label: "LinkedIn", ariaLabel: "LinkedIn", href: "https://linkedin.com/company/thepolestudios" }
-            ]
-        }
-    ];
-
     return (
         <>
             <Preloader />
             <main className="bg-black text-white min-h-screen w-full overflow-x-hidden selection:bg-yellow-500 selection:text-black">
                 <CosmicBackground />
-
-                {/* New Navigation */}
-                <CardNav
-                    items={navItems}
-                    baseColor="rgba(255, 255, 255, 0.9)"
-                    menuColor="#000"
-                    buttonBgColor="#111"
-                    buttonTextColor="#fff"
-                />
 
                 <Hero />
 
@@ -82,9 +39,9 @@ export default function Home() {
                             </div>
                         </ParallaxText>
                         <MaskedText className="mb-6">
-                            <h2 className="text-4xl md:text-7xl font-bold uppercase tracking-tighter">
-                                <ScrambleText>Constructing</ScrambleText> the <span className="text-transparent bg-clip-text bg-gradient-to-r from-tech-blue to-tech-green">Future</span>
-                            </h2>
+                            <h1 className="text-4xl md:text-7xl font-bold uppercase tracking-tighter">
+                                <ScrambleText>Creative Digital Agency for</ScrambleText> <span className="text-transparent bg-clip-text bg-gradient-to-r from-tech-blue to-tech-green">Bold Brands.</span>
+                            </h1>
                         </MaskedText>
                         <ParallaxText speed={-0.1}>
                             <MaskedText>

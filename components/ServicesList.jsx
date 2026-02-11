@@ -7,31 +7,35 @@ import ServiceIcon from './ServiceIcon';
 const services = [
     {
         number: "01",
-        title: "Video Editing",
-        description: "Cinematic storytelling.",
-        features: ["Color Grading", "VFX & Motion", "Sound Design"],
-        type: "video-editing"
+        title: "Branding & Design",
+        description: "Identity, UI/UX.",
+        features: ["Visual Identity", "UI/UX Design", "Brand Strategy"],
+        type: "brand-strategy",
+        href: "/branding"
     },
     {
         number: "02",
-        title: "Web Development",
-        description: "Immersive experiences.",
-        features: ["React / Next.js", "WebGL", "Creative Coding"],
-        type: "web-development"
+        title: "Web & Creative Dev",
+        description: "Websites, Integrated Campaigns.",
+        features: ["Next.js/React", "WebGL", "Creative Coding"],
+        type: "web-development",
+        href: "/web-design"
     },
     {
         number: "03",
-        title: "Brand Strategy",
-        description: "Defining your voice.",
-        features: ["Positioning", "Identity", "Growth"],
-        type: "brand-strategy"
+        title: "SaaS & Automation",
+        description: "AI Agents, Custom Software.",
+        features: ["AI Integration", "Process Automation", "Custom SaaS"],
+        type: "saas-automation",
+        href: "/saas-automation"
     },
     {
         number: "04",
-        title: "Motion Graphics",
-        description: "Fluid animation.",
-        features: ["3D Animation", "Logo Reveals", "Social Assets"],
-        type: "motion-graphics"
+        title: "SEO & Growth",
+        description: "Search Intelligence.",
+        features: ["Technical SEO", "Growth Marketing", "Analytics"],
+        type: "seo-growth",
+        href: "/seo"
     }
 ];
 
@@ -72,7 +76,8 @@ export default function ServicesList() {
                         key={idx}
                         onMouseEnter={() => setHoveredIndex(idx)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className={`group relative border-b border-white/10 py-12 transition-all duration-300 ${hoveredIndex !== null && hoveredIndex !== idx ? 'opacity-30' : 'opacity-100'}`}
+                        onClick={() => window.location.href = service.href}
+                        className={`group relative border-b border-white/10 py-12 transition-all duration-300 cursor-pointer ${hoveredIndex !== null && hoveredIndex !== idx ? 'opacity-30' : 'opacity-100'}`}
                     >
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4 group-hover:px-8 transition-all duration-300">
                             <span className="text-xs font-mono text-neutral-600 mb-2 md:mb-0">0{service.number}</span>
