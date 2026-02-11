@@ -14,6 +14,13 @@ const links = [
         color: "text-pink-500"
     },
     {
+        label: "Email",
+        sub: "polestudios@mail.ru",
+        url: "mailto:polestudios@mail.ru",
+        icon: Mail,
+        color: "text-white"
+    },
+    {
         label: "LinkedIn",
         sub: "Connect Professionally",
         url: "https://linkedin.com/company/thepolestudios",
