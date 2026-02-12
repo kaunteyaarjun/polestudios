@@ -51,7 +51,9 @@ const CardNav = ({
                 contentEl.style.position = wasPosition;
                 contentEl.style.height = wasHeight;
 
-                return topBar + contentHeight + padding;
+                // Clamp height to window height minus some margin
+                const maxHeight = window.innerHeight - 20;
+                return Math.min(topBar + contentHeight + padding, maxHeight);
             }
         }
         return 350;
@@ -64,7 +66,24 @@ const CardNav = ({
         gsap.set(navEl, { height: 60, overflow: 'hidden' });
         gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
-        const tl = gsap.timeline({ paused: true });
+        const tl = gsap.timeline({
+            paused: true,
+            onComplete: () => {
+                // Enable scrolling after animation completes
+                const contentEl = navEl.querySelector('.card-nav-content');
+                if (contentEl) {
+                    contentEl.style.overflowY = 'auto';
+                    contentEl.style.overscrollBehavior = 'contain';
+                }
+            },
+            onReverseStart: () => {
+                // Disable scrolling before animation reverses
+                const contentEl = navEl.querySelector('.card-nav-content');
+                if (contentEl) {
+                    contentEl.style.overflowY = 'hidden';
+                }
+            }
+        });
 
         tl.to(navEl, {
             height: calculateHeight,
@@ -95,6 +114,13 @@ const CardNav = ({
             if (isExpanded) {
                 const newHeight = calculateHeight();
                 gsap.set(navRef.current, { height: newHeight });
+
+                // Ensure overflow is auto if expanded directly (e.g. rotate)
+                const contentEl = navRef.current.querySelector('.card-nav-content');
+                if (contentEl) {
+                    contentEl.style.overflowY = 'auto';
+                    contentEl.style.overscrollBehavior = 'contain';
+                }
 
                 tlRef.current.kill();
                 const newTl = createTimeline();

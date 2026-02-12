@@ -8,8 +8,10 @@
   --background-end-rgb: 10, 10, 10;
 }
 
-* {
-  cursor: none !important;
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 html.lenis,

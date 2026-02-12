@@ -8,6 +8,11 @@ export default function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
 
     useEffect(() => {
+        // Check for touch device
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            return;
+        }
+
         const mouseMove = (e) => {
             setMousePosition({
                 x: e.clientX,
@@ -31,6 +36,19 @@ export default function CustomCursor() {
             window.removeEventListener("mouseover", handleMouseOver);
         };
     }, []);
+
+    // Return null on server or if touch device (checked in effect for simplicity, but could be state)
+    // For SSR safety and simplicity, we can use a state to track if we should render
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        // Only show on non-touch devices
+        if (window.matchMedia("(pointer: fine)").matches) {
+            setIsVisible(true);
+        }
+    }, []);
+
+    if (!isVisible) return null;
 
     return (
         <motion.div
