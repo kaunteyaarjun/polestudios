@@ -9,8 +9,7 @@ const navItems = [
         textColor: "#fff",
         links: [
             { label: "Homepage", ariaLabel: "Go to Homepage", href: "/" },
-            { label: "Mission", ariaLabel: "Our Mission", href: "/mission" },
-            { label: "Team", ariaLabel: "Our Team", href: "/team" }
+            { label: "Mission", ariaLabel: "Our Mission", href: "/mission" }
         ]
     },
     {
