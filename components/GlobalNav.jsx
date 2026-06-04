@@ -38,7 +38,8 @@ const navItems = [
         textColor: "#fff",
         links: [
             { label: "Uplink", ariaLabel: "Link in Bio", href: "/uplink" },
-            { label: "Email", ariaLabel: "Email us", href: "mailto:polestudios@mail.ru" },
+            { label: "Email", ariaLabel: "Email us", href: "mailto:teams@polestudios.in" },
+            { label: "Phone", ariaLabel: "Call us", href: "tel:+919337346497" },
             { label: "LinkedIn", ariaLabel: "LinkedIn", href: "https://linkedin.com/company/thepolestudios" }
         ]
     }

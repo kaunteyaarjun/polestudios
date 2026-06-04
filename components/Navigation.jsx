@@ -36,7 +36,7 @@ const menuItems = [
     {
         id: 5,
         title: "Contact",
-        href: "mailto:polestudios@mail.ru",
+        href: "mailto:teams@polestudios.in",
         description: "Get in touch",
         image: "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=600&auto=format&fit=crop&q=80"
     }
@@ -45,7 +45,7 @@ const menuItems = [
 const socials = [
     { name: "Instagram", url: "https://instagram.com/thepolestudios" },
     { name: "LinkedIn", url: "https://linkedin.com/company/thepolestudios" },
-    { name: "Email", url: "mailto:polestudios@mail.ru" }
+    { name: "Email", url: "mailto:teams@polestudios.in" }
 ];
 
 export default function NavigationOverlay({ isOpen, onClose }) {
@@ -161,7 +161,11 @@ export default function NavigationOverlay({ isOpen, onClose }) {
                                     <div className="flex flex-col gap-3 text-white/40 text-sm font-mono">
                                         <div className="flex items-center gap-2">
                                             <Mail size={16} />
-                                            <a href="mailto:polestudios@mail.ru" className="hover:text-white transition-colors">polestudios@mail.ru</a>
+                                            <a href="mailto:teams@polestudios.in" className="hover:text-white transition-colors">teams@polestudios.in</a>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Phone size={16} />
+                                            <a href="tel:+919337346497" className="hover:text-white transition-colors">+91 93373 46497</a>
                                         </div>
                                     </div>
                                 </motion.div>

@@ -107,7 +107,7 @@ export default function Home() {
                                 <div className="absolute inset-0 bg-white/5 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                             </button>
 
-                            <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 text-xs font-mono text-neutral-500 uppercase tracking-widest">
+                            <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 text-xs font-mono text-neutral-500 uppercase tracking-widest">
                                 <a href="https://instagram.com/thepolestudios" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-t border-white/10 pt-4 text-left">
                                     <span className="block mb-2 opacity-50">RELAY_01</span>
                                     Instagram
@@ -116,9 +116,13 @@ export default function Home() {
                                     <span className="block mb-2 opacity-50">RELAY_02</span>
                                     LinkedIn
                                 </a>
-                                <a href="mailto:polestudios@mail.ru" className="hover:text-white transition-colors border-t border-white/10 pt-4 text-left">
+                                <a href="mailto:teams@polestudios.in" className="hover:text-white transition-colors border-t border-white/10 pt-4 text-left">
                                     <span className="block mb-2 opacity-50">RELAY_03</span>
                                     Email
+                                </a>
+                                <a href="tel:+919337346497" className="hover:text-white transition-colors border-t border-white/10 pt-4 text-left">
+                                    <span className="block mb-2 opacity-50">RELAY_04</span>
+                                    Phone
                                 </a>
                             </div>
 

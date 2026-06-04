@@ -1,9 +1,8 @@
 "use client";
 import CosmicBackground from "../../components/CosmicBackground";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ArrowRight, Instagram, Linkedin, Mail, Globe, Send, X, Loader2 } from 'lucide-react';
-import { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import { ExternalLink, Instagram, Linkedin, Mail, Send, Phone, MessageCircle, X } from 'lucide-react';
+import { useState } from 'react';
 
 const links = [
     {
@@ -15,10 +14,17 @@ const links = [
     },
     {
         label: "Email",
-        sub: "polestudios@mail.ru",
-        url: "mailto:polestudios@mail.ru",
+        sub: "teams@polestudios.in",
+        url: "mailto:teams@polestudios.in",
         icon: Mail,
         color: "text-white"
+    },
+    {
+        label: "Phone",
+        sub: "+91 93373 46497",
+        url: "tel:+919337346497",
+        icon: Phone,
+        color: "text-green-500"
     },
     {
         label: "LinkedIn",
@@ -31,67 +37,23 @@ const links = [
 
 export default function UplinkPage() {
     const [showForm, setShowForm] = useState(false);
-    const [sending, setSending] = useState(false);
-    const [sent, setSent] = useState(false);
-    const [error, setError] = useState(false);
-    const [rateLimited, setRateLimited] = useState(false);
-    const form = useRef();
-    const submitCount = useRef(0);
-    const lastSubmitTime = useRef(0);
 
-    const MAX_SUBMISSIONS = 3; // Max submissions per session
-    const COOLDOWN_MS = 60000; // 60 second cooldown between submissions
-
-    const sendEmail = (e) => {
+    const sendWhatsApp = (e) => {
         e.preventDefault();
+        const formData = new FormData(e.target);
+        const name = formData.get("user_name");
+        const email = formData.get("user_email");
+        const message = formData.get("message");
 
-        // Honeypot check — bots fill hidden fields
-        const honeypot = form.current.querySelector('[name="website_url"]');
-        if (honeypot && honeypot.value) {
-            // Bot detected — silently pretend success
-            setSent(true);
-            setTimeout(() => { setShowForm(false); setSent(false); }, 3000);
-            return;
-        }
+        // Construct the custom WhatsApp template
+        const template = `*New Secure Transmission*\n\n*Identity:* ${name}\n*Frequency:* ${email}\n\n*Payload:*\n${message}`;
+        const encodedText = encodeURIComponent(template);
 
-        // Rate limit: max submissions per session
-        if (submitCount.current >= MAX_SUBMISSIONS) {
-            setRateLimited(true);
-            return;
-        }
-
-        // Rate limit: cooldown between submissions
-        const now = Date.now();
-        const timeSinceLastSubmit = now - lastSubmitTime.current;
-        if (lastSubmitTime.current > 0 && timeSinceLastSubmit < COOLDOWN_MS) {
-            const secondsLeft = Math.ceil((COOLDOWN_MS - timeSinceLastSubmit) / 1000);
-            setError(`COOLDOWN ACTIVE. RETRY IN ${secondsLeft}s.`);
-            return;
-        }
-
-        setSending(true);
-        setError(false);
-
-        emailjs.sendForm(
-            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_wyn3n0e',
-            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_8hjak1v',
-            form.current,
-            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '437MH8D5ELLiy12Ie'
-        )
-            .then((result) => {
-                submitCount.current += 1;
-                lastSubmitTime.current = Date.now();
-                setSent(true);
-                setSending(false);
-                setTimeout(() => {
-                    setShowForm(false);
-                    setSent(false);
-                }, 3000);
-            }, (err) => {
-                console.log(err.text);
-                setError('TRANSMISSION FAILED. CHECK CONSOLE.');
-                setSending(false);
-            });
+        // Open WhatsApp with the pre-filled message
+        window.open(`https://wa.me/919337346497?text=${encodedText}`, '_blank');
+        
+        // Close the modal
+        setShowForm(false);
     };
 
     return (
@@ -148,7 +110,7 @@ export default function UplinkPage() {
                         </motion.a>
                     ))}
 
-                    {/* Contact Trigger */}
+                    {/* Contact Trigger -> Opens Modal */}
                     <motion.button
                         onClick={() => setShowForm(true)}
                         initial={{ opacity: 0, y: 20 }}
@@ -158,10 +120,10 @@ export default function UplinkPage() {
                     >
                         <div className="flex items-center gap-4">
                             <div className="p-2 rounded-lg bg-black/50 border border-white/5 text-gray-400 group-hover:text-tech-blue transition-colors">
-                                <Mail size={18} />
+                                <MessageCircle size={18} />
                             </div>
                             <div className="text-left">
-                                <div className="font-bold text-sm tracking-wide text-gray-300 group-hover:text-tech-blue transition-colors">Direct Frequency</div>
+                                <div className="font-bold text-sm tracking-wide text-gray-300 group-hover:text-tech-blue transition-colors">WhatsApp Secure Line</div>
                                 <div className="text-[10px] font-mono text-neutral-500 uppercase">Send Encrypted Message</div>
                             </div>
                         </div>
@@ -201,83 +163,48 @@ export default function UplinkPage() {
                             </button>
 
                             <h2 className="text-xl font-bold uppercase mb-1">Transmit Data</h2>
-                            <p className="text-xs font-mono text-neutral-500 mb-6">SECURE CHANNEL OPEN</p>
+                            <p className="text-xs font-mono text-neutral-500 mb-6">SECURE CHANNEL VIA WHATSAPP</p>
 
-                            {!sent ? (
-                                <form ref={form} onSubmit={sendEmail} className="space-y-4">
-                                    {/* Honeypot — hidden from humans, bots fill it */}
-                                    <input type="text" name="website_url" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }} tabIndex={-1} autoComplete="off" />
-                                    <div>
-                                        <label className="text-[10px] font-mono text-neutral-500 uppercase block mb-1">Identity</label>
-                                        <input
-                                            type="text"
-                                            name="user_name"
-                                            required
-                                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-sm focus:outline-none focus:border-tech-blue transition-colors placeholder:text-neutral-700"
-                                            placeholder="John Doe"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="text-[10px] font-mono text-neutral-500 uppercase block mb-1">Frequency Address</label>
-                                        <input
-                                            type="email"
-                                            name="user_email"
-                                            required
-                                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-sm focus:outline-none focus:border-tech-blue transition-colors placeholder:text-neutral-700"
-                                            placeholder="john@example.com"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="text-[10px] font-mono text-neutral-500 uppercase block mb-1">Payload</label>
-                                        <textarea
-                                            name="message"
-                                            required
-                                            rows={4}
-                                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-sm focus:outline-none focus:border-tech-blue transition-colors placeholder:text-neutral-700 resize-none"
-                                            placeholder="Enter your message..."
-                                        />
-                                    </div>
-
-                                    {error && (
-                                        <div className="text-red-500 text-xs font-mono">
-                                            {typeof error === 'string' ? error : 'TRANSMISSION FAILED. CHECK CONSOLE.'}
-                                        </div>
-                                    )}
-
-                                    {rateLimited && (
-                                        <div className="text-yellow-500 text-xs font-mono">
-                                            MAX TRANSMISSIONS REACHED. SESSION LOCKED.
-                                        </div>
-                                    )}
-
-                                    <button
-                                        type="submit"
-                                        disabled={sending}
-                                        className="w-full bg-white text-black font-bold uppercase py-3 rounded-lg hover:bg-tech-blue hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                                    >
-                                        {sending ? (
-                                            <>
-                                                <Loader2 size={16} className="animate-spin" />
-                                                Transmitting...
-                                            </>
-                                        ) : (
-                                            <>
-                                                Send Transmission
-                                            </>
-                                        )}
-                                    </button>
-                                </form>
-                            ) : (
-                                <div className="py-12 flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center mb-4">
-                                        <Send size={32} />
-                                    </div>
-                                    <h3 className="text-lg font-bold uppercase mb-2">Data Sent</h3>
-                                    <p className="text-sm text-neutral-500">
-                                        Your message has been encrypted and transmitted successfully.
-                                    </p>
+                            <form onSubmit={sendWhatsApp} className="space-y-4">
+                                <div>
+                                    <label className="text-[10px] font-mono text-neutral-500 uppercase block mb-1">Identity</label>
+                                    <input
+                                        type="text"
+                                        name="user_name"
+                                        required
+                                        className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-sm focus:outline-none focus:border-tech-blue transition-colors placeholder:text-neutral-700"
+                                        placeholder="John Doe"
+                                    />
                                 </div>
-                            )}
+                                <div>
+                                    <label className="text-[10px] font-mono text-neutral-500 uppercase block mb-1">Frequency Address</label>
+                                    <input
+                                        type="email"
+                                        name="user_email"
+                                        required
+                                        className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-sm focus:outline-none focus:border-tech-blue transition-colors placeholder:text-neutral-700"
+                                        placeholder="john@example.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-[10px] font-mono text-neutral-500 uppercase block mb-1">Payload</label>
+                                    <textarea
+                                        name="message"
+                                        required
+                                        rows={4}
+                                        className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-sm focus:outline-none focus:border-tech-blue transition-colors placeholder:text-neutral-700 resize-none"
+                                        placeholder="Enter your message..."
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full bg-white text-black font-bold uppercase py-3 rounded-lg hover:bg-tech-blue hover:text-white transition-all flex items-center justify-center gap-2 mt-4"
+                                >
+                                    <MessageCircle size={16} />
+                                    Send via WhatsApp
+                                </button>
+                            </form>
                         </motion.div>
                     </motion.div>
                 )}
