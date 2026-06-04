@@ -242,7 +242,7 @@ export default function ProjectShowcase() {
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                                     {selectedProject.metrics.map((metric, i) => (
                                         <div key={i} className="text-center p-6 bg-white/5 rounded-xl border border-white/10">
-                                            <div className="text-4xl md:text-5xl font-black text-yellow-400 mb-2">
+                                            <div className="text-3xl lg:text-4xl font-black text-yellow-400 mb-2 break-words leading-tight">
                                                 {metric.value}
                                             </div>
                                             <div className="text-xs font-mono text-white/60 uppercase">
