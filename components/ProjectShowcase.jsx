@@ -7,6 +7,25 @@ import ScrambleText from './ScrambleText';
 
 const projects = [
     {
+        id: "dms-photography",
+        title: "DMS Photography",
+        category: "Photography Portfolio",
+        year: "2024",
+        thumbnail: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80",
+        video: "#",
+        challenge: "Creating a stunning visual portfolio for a professional photographer.",
+        solution: "Designed a clean, minimalist gallery that puts the focus entirely on the imagery.",
+        results: "Enhanced brand image and streamlined client booking.",
+        metrics: [
+            { label: "Performance", value: "Fast" },
+            { label: "Design", value: "Minimalist" },
+            { label: "Focus", value: "Visuals" },
+            { label: "SEO", value: "Optimized" }
+        ],
+        tech: ["React", "Next.js", "Tailwind", "Framer Motion"],
+        link: "https://dmsphotography.in"
+    },
+    {
         id: "somya-dev",
         title: "Somya's Portfolio",
         category: "Personal Brand",
