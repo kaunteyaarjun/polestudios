@@ -11,7 +11,7 @@ const projects = [
         title: "DMS Photography",
         category: "Photography Portfolio",
         year: "2024",
-        thumbnail: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80",
+        thumbnail: "/projects/dms-photography.png",
         video: "#",
         challenge: "Creating a stunning visual portfolio for a professional photographer.",
         solution: "Designed a clean, minimalist gallery that puts the focus entirely on the imagery.",
