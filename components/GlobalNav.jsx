@@ -24,12 +24,13 @@ const navItems = [
         ]
     },
     {
-        label: "Projects",
+        label: "Resources",
         bgColor: "#201335",
         textColor: "#fff",
         links: [
             { label: "Featured", ariaLabel: "Featured Projects", href: "/featured" },
-            { label: "Case Studies", ariaLabel: "Project Case Studies", href: "/case-studies" }
+            { label: "Case Studies", ariaLabel: "Project Case Studies", href: "/case-studies" },
+            { label: "Blogs", ariaLabel: "Read Blogs", href: "/blogs" }
         ]
     },
     {

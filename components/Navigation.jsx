@@ -28,9 +28,9 @@ const menuItems = [
     },
     {
         id: 4,
-        title: "News",
-        href: "#news",
-        description: "Latest insights",
+        title: "Blogs",
+        href: "/blogs",
+        description: "Latest insights & research",
         image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80"
     },
     {
