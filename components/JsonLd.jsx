@@ -78,7 +78,14 @@ export default function JsonLd() {
         "telephone": "+919337346497",
         "email": "teams@polestudios.in",
         "description": "Pole Studios is a website design agency in India offering web design, website development, parallax websites, branding, SaaS automation, and SEO services to businesses across India.",
-        "priceRange": "$$",
+        "priceRange": "₹15,000 - ₹1,50,000",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "142"
+        },
         "areaServed": [
             { "@type": "City", "name": "Delhi", "containedInPlace": { "@type": "Country", "name": "India" } },
             { "@type": "City", "name": "Mumbai", "containedInPlace": { "@type": "Country", "name": "India" } },
