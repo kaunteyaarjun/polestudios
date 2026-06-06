@@ -12,6 +12,7 @@ const projects = [
         category: "Photography Portfolio",
         year: "2024",
         thumbnail: "/projects/dms-photography.png",
+        fullImage: "/projects/dms-photography-full.png",
         video: "#",
         challenge: "Creating a stunning visual portfolio for a professional photographer.",
         solution: "Designed a clean, minimalist gallery that puts the focus entirely on the imagery.",
@@ -152,13 +153,17 @@ export default function ProjectShowcase() {
 
                             {/* Modal Content */}
                             <div className="space-y-12">
-                                {/* Hero Image */}
-                                <div className="relative h-[400px] rounded-2xl overflow-hidden">
-                                    <img src={selectedProject.thumbnail} alt={selectedProject.title} className="w-full h-full object-cover" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                                    <div className="absolute bottom-8 left-8">
-                                        <span className="text-xs font-mono text-yellow-500 mb-2 block">{selectedProject.category}</span>
-                                        <h2 className="text-5xl md:text-7xl font-black uppercase">{selectedProject.title}</h2>
+                                {/* Hero Image / Full Preview */}
+                                <div className={`relative ${selectedProject.fullImage ? 'w-full min-h-[400px]' : 'h-[400px]'} rounded-2xl overflow-hidden bg-black`}>
+                                    <img 
+                                        src={selectedProject.fullImage || selectedProject.thumbnail} 
+                                        alt={selectedProject.title} 
+                                        className={`w-full ${selectedProject.fullImage ? 'h-auto' : 'h-full object-cover'}`} 
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
+                                    <div className="absolute bottom-8 left-8 pointer-events-none">
+                                        <span className="text-xs font-mono text-yellow-500 mb-2 block drop-shadow-md">{selectedProject.category}</span>
+                                        <h2 className="text-5xl md:text-7xl font-black uppercase drop-shadow-lg">{selectedProject.title}</h2>
                                     </div>
                                 </div>
 
