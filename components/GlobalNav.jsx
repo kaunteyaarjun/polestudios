@@ -1,59 +1,38 @@
 "use client";
 
-import CardNav from "./CardNav";
+import StaggeredMenu from "./StaggeredMenu";
 
-const navItems = [
-    {
-        label: "About",
-        bgColor: "#0D0716",
-        textColor: "#fff",
-        links: [
-            { label: "Homepage", ariaLabel: "Go to Homepage", href: "/" },
-            { label: "Mission", ariaLabel: "Our Mission", href: "/mission" }
-        ]
-    },
-    {
-        label: "Services",
-        bgColor: "#170D27",
-        textColor: "#fff",
-        links: [
-            { label: "Branding & Design", ariaLabel: "Branding & Design", href: "/branding" },
-            { label: "Web & Creative Dev", ariaLabel: "Web & Creative Dev", href: "/web-design" },
-            { label: "SaaS & Automation", ariaLabel: "SaaS & Automation", href: "/saas-automation" },
-            { label: "SEO & Growth", ariaLabel: "SEO & Growth", href: "/seo" }
-        ]
-    },
-    {
-        label: "Resources",
-        bgColor: "#201335",
-        textColor: "#fff",
-        links: [
-            { label: "Featured", ariaLabel: "Featured Projects", href: "/featured" },
-            { label: "Case Studies", ariaLabel: "Project Case Studies", href: "/case-studies" },
-            { label: "Blogs", ariaLabel: "Read Blogs", href: "/blogs" }
-        ]
-    },
-    {
-        label: "Contact",
-        bgColor: "#271E37",
-        textColor: "#fff",
-        links: [
-            { label: "Uplink", ariaLabel: "Link in Bio", href: "/uplink" },
-            { label: "Email", ariaLabel: "Email us", href: "mailto:teams@polestudios.in" },
-            { label: "Phone", ariaLabel: "Call us", href: "tel:+919337346497" },
-            { label: "LinkedIn", ariaLabel: "LinkedIn", href: "https://linkedin.com/company/thepolestudios" }
-        ]
-    }
+const menuItems = [
+    { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+    { label: 'Featured', ariaLabel: 'Featured Projects', link: '/featured' },
+    { label: 'Case Studies', ariaLabel: 'Project Case Studies', link: '/case-studies' },
+    { label: 'Blogs', ariaLabel: 'Read Blogs', link: '/blogs' },
+    { label: 'Uplink', ariaLabel: 'Link in Bio', link: '/uplink' }
+];
+
+const socialItems = [
+    { label: 'Email', link: 'mailto:teams@polestudios.in' },
+    { label: 'Phone', link: 'tel:+919337346497' },
+    { label: 'LinkedIn', link: 'https://linkedin.com/company/thepolestudios' }
 ];
 
 export default function GlobalNav() {
     return (
-        <CardNav
-            items={navItems}
-            baseColor="rgba(255, 255, 255, 0.9)"
-            menuColor="#000"
-            buttonBgColor="#111"
-            buttonTextColor="#fff"
+        <StaggeredMenu
+            isFixed={true}
+            position="right"
+            items={menuItems}
+            socialItems={socialItems}
+            displaySocials={true}
+            displayItemNumbering={true}
+            menuButtonColor="#fff"
+            openMenuButtonColor="#000"
+            changeMenuColorOnOpen={true}
+            colors={['#1a1a1a', '#2a2a2a']}
+            logoUrl="/polelogo.png"
+            accentColor="#3b82f6" // tech-blue
+            onMenuOpen={() => console.log('Menu opened')}
+            onMenuClose={() => console.log('Menu closed')}
         />
     );
 }
