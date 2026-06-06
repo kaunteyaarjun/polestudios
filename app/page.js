@@ -25,14 +25,10 @@ export default function Home() {
             <main className="bg-black text-white min-h-screen w-full overflow-x-hidden selection:bg-yellow-500 selection:text-black">
                 <CosmicBackground />
 
-                <Hero />
-
-                <ParallaxDrip />
-
                 <div className="relative z-10 bg-black/50 backdrop-blur-sm md:backdrop-blur-none">
 
-                    {/* INTRO TEXT / REDESIGNED HERO */}
-                    <section className="min-h-[70vh] flex flex-col justify-center items-center py-24 px-4 relative z-20">
+                    {/* NEW PRIMARY HERO SECTION */}
+                    <section className="min-h-screen flex flex-col justify-center items-center py-32 px-4 relative z-20">
                         <div className="relative w-full max-w-6xl mx-auto border border-white/20 bg-black/40 backdrop-blur-xl p-10 md:p-20 overflow-hidden">
                             
                             {/* Technical Corners and Lines */}
