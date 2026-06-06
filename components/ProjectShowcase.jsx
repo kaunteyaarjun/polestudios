@@ -27,10 +27,10 @@ const projects = [
     },
     {
         id: "real-rising-star",
-        title: "Real Rising Star",
+        title: "Freelancer Portfolio",
         category: "Digital Platform",
         year: "2024",
-        thumbnail: "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=800&auto=format&fit=crop&q=80",
+        thumbnail: "/projects/freelancer-portfolio.png",
         video: "#",
         challenge: "Building a platform for rising stars.",
         solution: "Integrated dynamic content delivery and modern UI.",
