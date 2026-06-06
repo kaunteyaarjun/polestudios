@@ -26,25 +26,6 @@ const projects = [
         link: "https://dmsphotography.in"
     },
     {
-        id: "somya-dev",
-        title: "Somya's Portfolio",
-        category: "Personal Brand",
-        year: "2024",
-        thumbnail: "https://images.unsplash.com/photo-1545665277-59374f9d852a?w=800&auto=format&fit=crop&q=80",
-        video: "#",
-        challenge: "Creating a unique personal brand identity.",
-        solution: "Developed a high-performance portfolio with custom animations.",
-        results: "Increased visibility and engagement.",
-        metrics: [
-            { label: "Performance", value: "100%" },
-            { label: "Design", value: "Custom" },
-            { label: "Tech", value: "Next.js" },
-            { label: "Vibe", value: "Chill" }
-        ],
-        tech: ["React", "Next.js", "Tailwind", "Framer Motion"],
-        link: "https://somya.pages.dev"
-    },
-    {
         id: "real-rising-star",
         title: "Real Rising Star",
         category: "Digital Platform",
@@ -62,64 +43,7 @@ const projects = [
         ],
         tech: ["React", "Vite", "GSAP", "Tailwind"],
         link: "https://realrisingstar.pages.dev"
-    },
-    {
-        id: 1,
-        title: "Kaunteya Studios",
-        category: "Digital Experience",
-        year: "2024",
-        thumbnail: "/projects/kaunteya-preview.png",
-        video: "#",
-        challenge: "Studio needed a high-performance portfolio with immersive animations.",
-        solution: "Engineered a custom WebGL framework with seamless page transitions.",
-        results: "Award-winning design, 40% increase in client inquiries.",
-        metrics: [
-            { label: "Performance", value: "100%" },
-            { label: "Engagement", value: "+40%" },
-            { label: "Awards", value: "3" },
-            { label: "Retention", value: "High" }
-        ],
-        tech: ["React", "Three.js", "GSAP", "Tailwind"],
-        link: "https://resonant-fairy-f7f7f3.netlify.app/"
-    },
-    {
-        id: 2,
-        title: "Polarity Engine",
-        category: "Discord Security & Design",
-        year: "2024",
-        thumbnail: "https://images.unsplash.com/photo-1614064641938-3e858a915f32?w=800&auto=format&fit=crop&q=80",
-        video: "#",
-        challenge: "Discord communities needed automated security combined with custom design generation.",
-        solution: "Built a multipurpose bot with AI-prompted template generation and nuking protection.",
-        results: "Protected 500+ servers, generated 10k+ templates, 99.9% threat mitigation.",
-        metrics: [
-            { label: "Servers Protected", value: "500+" },
-            { label: "Templates Gen", value: "10K+" },
-            { label: "Uptime", value: "99.9%" },
-            { label: "Threats Blocked", value: "50K+" }
-        ],
-        tech: ["Discord.js", "Node.js", "OpenAI API", "Canvas"],
-        link: "#"
-    },
-    {
-        id: 3,
-        title: "Pika Network",
-        category: "Game Server Infrastructure",
-        year: "2024",
-        thumbnail: "/projects/pika-preview.png",
-        video: "#",
-        challenge: "Needed robust infrastructure for massive concurrent player base.",
-        solution: "Optimized network stack and implemented custom anti-cheat heuristics.",
-        results: "Supports thousands of concurrent players with minimal latency.",
-        metrics: [
-            { label: "Players", value: "10K+" },
-            { label: "Uptime", value: "99.9%" },
-            { label: "Latency", value: "<20ms" },
-            { label: "Community", value: "Huge" }
-        ],
-        tech: ["Java", "Netty", "BungeeCord", "Redis"],
-        link: "https://pika-network.net/"
-    },
+    }
 ];
 
 export default function ProjectShowcase() {
