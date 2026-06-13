@@ -8,6 +8,12 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
+export async function generateStaticParams() {
+    return blogs.map((post) => ({
+        slug: post.slug,
+    }));
+}
+
 export async function generateMetadata({ params }) {
     const post = blogs.find(b => b.slug === params.slug);
     if (!post) return { title: 'Not Found | Pole Studios' };
